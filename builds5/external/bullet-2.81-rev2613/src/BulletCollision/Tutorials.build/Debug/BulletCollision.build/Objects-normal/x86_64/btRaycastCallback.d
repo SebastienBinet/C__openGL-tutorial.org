@@ -1,0 +1,30 @@
+dependencies: \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btRaycastCallback.cpp \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btConvexShape.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btCollisionShape.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/LinearMath/btTransform.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/LinearMath/btMatrix3x3.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/LinearMath/btVector3.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/LinearMath/btScalar.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/LinearMath/btMinMax.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/LinearMath/btAlignedAllocator.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/LinearMath/btQuaternion.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/LinearMath/btQuadWord.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/BroadphaseCollision/btBroadphaseProxy.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btCollisionMargin.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btTriangleShape.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btBoxShape.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btPolyhedralConvexShape.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btConvexInternalShape.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/LinearMath/btAabbUtil2.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btSubSimplexConvexCast.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btConvexCast.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/LinearMath/btIDebugDraw.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btSimplexSolverInterface.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btVoronoiSimplexSolver.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btGjkConvexCast.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btContinuousConvexCollision.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btGjkEpaPenetrationDepthSolver.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btConvexPenetrationDepthSolver.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btRaycastCallback.h \
+  /Users/seb/GitHub/opengl-tutorial-org/external/bullet-2.81-rev2613/src/BulletCollision/CollisionShapes/btTriangleCallback.h
