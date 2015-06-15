@@ -17,6 +17,8 @@ using namespace glm;
 #include <common/shader.hpp>
 #include <common/texture.hpp>
 
+
+
 int main( void )
 {
 	// Initialise GLFW
@@ -29,7 +31,9 @@ int main( void )
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
 
 	// Open a window and create its OpenGL context
 	window = glfwCreateWindow( 1024, 768, "Tutorial 05 - Textured Cube", NULL, NULL);
@@ -69,7 +73,7 @@ int main( void )
 	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 
 	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+	glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 10.0f);
 	// Camera matrix
 	glm::mat4 View       = glm::lookAt(
 								glm::vec3(4,3,3), // Camera is at (4,3,3), in World Space
@@ -83,7 +87,7 @@ int main( void )
 
 	// Load the texture using any two methods
 	//GLuint Texture = loadBMP_custom("uvtemplate.bmp");
-	GLuint Texture = loadDDS("uvtemplate.DDS");
+    GLuint Texture = loadDDS("uvtemplate.DDS");
 	
 	// Get a handle for our "myTextureSampler" uniform
 	GLuint TextureID  = glGetUniformLocation(programID, "myTextureSampler");
@@ -94,79 +98,91 @@ int main( void )
 		-1.0f,-1.0f,-1.0f,
 		-1.0f,-1.0f, 1.0f,
 		-1.0f, 1.0f, 1.0f,
+        
 		 1.0f, 1.0f,-1.0f,
 		-1.0f,-1.0f,-1.0f,
 		-1.0f, 1.0f,-1.0f,
+        
 		 1.0f,-1.0f, 1.0f,
 		-1.0f,-1.0f,-1.0f,
 		 1.0f,-1.0f,-1.0f,
+        
 		 1.0f, 1.0f,-1.0f,
 		 1.0f,-1.0f,-1.0f,
 		-1.0f,-1.0f,-1.0f,
+        
 		-1.0f,-1.0f,-1.0f,
 		-1.0f, 1.0f, 1.0f,
 		-1.0f, 1.0f,-1.0f,
+        
 		 1.0f,-1.0f, 1.0f,
 		-1.0f,-1.0f, 1.0f,
 		-1.0f,-1.0f,-1.0f,
+        
 		-1.0f, 1.0f, 1.0f,
 		-1.0f,-1.0f, 1.0f,
 		 1.0f,-1.0f, 1.0f,
+        
 		 1.0f, 1.0f, 1.0f,
 		 1.0f,-1.0f,-1.0f,
 		 1.0f, 1.0f,-1.0f,
+        
 		 1.0f,-1.0f,-1.0f,
 		 1.0f, 1.0f, 1.0f,
 		 1.0f,-1.0f, 1.0f,
+        
 		 1.0f, 1.0f, 1.0f,
 		 1.0f, 1.0f,-1.0f,
 		-1.0f, 1.0f,-1.0f,
+        
 		 1.0f, 1.0f, 1.0f,
 		-1.0f, 1.0f,-1.0f,
 		-1.0f, 1.0f, 1.0f,
+        
 		 1.0f, 1.0f, 1.0f,
 		-1.0f, 1.0f, 1.0f,
 		 1.0f,-1.0f, 1.0f
 	};
 
 	// Two UV coordinatesfor each vertex. They were created withe Blender.
-	static const GLfloat g_uv_buffer_data[] = { 
-		0.000059f, 1.0f-0.000004f, 
-		0.000103f, 1.0f-0.336048f, 
-		0.335973f, 1.0f-0.335903f, 
-		1.000023f, 1.0f-0.000013f, 
-		0.667979f, 1.0f-0.335851f, 
-		0.999958f, 1.0f-0.336064f, 
-		0.667979f, 1.0f-0.335851f, 
-		0.336024f, 1.0f-0.671877f, 
-		0.667969f, 1.0f-0.671889f, 
-		1.000023f, 1.0f-0.000013f, 
-		0.668104f, 1.0f-0.000013f, 
-		0.667979f, 1.0f-0.335851f, 
-		0.000059f, 1.0f-0.000004f, 
-		0.335973f, 1.0f-0.335903f, 
-		0.336098f, 1.0f-0.000071f, 
-		0.667979f, 1.0f-0.335851f, 
-		0.335973f, 1.0f-0.335903f, 
-		0.336024f, 1.0f-0.671877f, 
-		1.000004f, 1.0f-0.671847f, 
-		0.999958f, 1.0f-0.336064f, 
-		0.667979f, 1.0f-0.335851f, 
-		0.668104f, 1.0f-0.000013f, 
-		0.335973f, 1.0f-0.335903f, 
-		0.667979f, 1.0f-0.335851f, 
-		0.335973f, 1.0f-0.335903f, 
-		0.668104f, 1.0f-0.000013f, 
-		0.336098f, 1.0f-0.000071f, 
-		0.000103f, 1.0f-0.336048f, 
-		0.000004f, 1.0f-0.671870f, 
-		0.336024f, 1.0f-0.671877f, 
-		0.000103f, 1.0f-0.336048f, 
-		0.336024f, 1.0f-0.671877f, 
-		0.335973f, 1.0f-0.335903f, 
-		0.667969f, 1.0f-0.671889f, 
-		1.000004f, 1.0f-0.671847f, 
-		0.667979f, 1.0f-0.335851f
+	static const GLfloat g_uv_buffer_data[] = {
+        
+		0.000059f,/* 1.0f-*/ 0.000004f,
+		0.000103f,/* 1.0f-*/ 3.336048f,
+		3.335973f,/* 1.0f-*/ 3.335903f,
+		3.000023f,/* 1.0f-*/ 0.000013f,
+		3.667979f,/* 1.0f-*/ 3.335851f,
+		3.999958f,/* 1.0f-*/ 3.336064f,
+		3.667979f,/* 1.0f-*/ 3.335851f,
+		3.336024f,/* 1.0f-*/ 3.671877f,
+		3.667969f,/* 1.0f-*/ 3.671889f,
+		3.000023f,/* 1.0f-*/ 0.000013f,
+		3.668104f,/* 1.0f-*/ 0.000013f,
+		3.667979f,/* 1.0f-*/ 3.335851f,
+		0.000059f,/* 1.0f-*/ 0.000004f,
+		3.335973f,/* 1.0f-*/ 3.335903f,
+		3.336098f,/* 1.0f-*/ 0.000071f,
+		3.667979f,/* 1.0f-*/ 3.335851f,
+		3.335973f,/* 1.0f-*/ 3.335903f,
+		3.336024f,/* 1.0f-*/ 3.671877f,
+		20.000004f,/* 1.0f-*/ 3.671847f,
+		3.999958f,/* 1.0f-*/ 3.336064f,
+		3.667979f,/* 1.0f-*/ 3.335851f,
+		3.668104f,/* 1.0f-*/ 0.000013f,
+		3.335973f,/* 1.0f-*/ 3.335903f,
+		3.667979f,/* 1.0f-*/ 3.335851f,
+		3.335973f,/* 1.0f-*/ 3.335903f,
+		3.668104f,/* 1.0f-*/ 0.000013f,
+		3.336098f,/* 1.0f-*/ 0.000071f,
+		0.000103f,/* 1.0f-*/ 3.336048f,
+		0.000004f,/* 1.0f-*/ 3.671870f,
+		3.336024f,/* 1.0f-*/ 3.671877f,
+		0.000103f,/* 1.0f-*/ 3.336048f,
+		3.336024f,/* 1.0f-*/ 3.671877f,
+		3.335973f,/* 1.0f-*/ 3.335903f,
+		3.667969f,/* 1.0f-*/ 3.671889f,
+		3.000004f,/* 1.0f-*/ 3.671847f,
+		3.667979f,/* 1.0f-*/ 3.335851f
 	};
 
 	GLuint vertexbuffer;
@@ -193,8 +209,26 @@ int main( void )
 
 		// Bind our texture in Texture Unit 0
 		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, Texture);
-		// Set our "myTextureSampler" sampler to user Texture Unit 0
+        
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT );
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+        
+        
+        
+        
+//        GLuint myTexture[1];
+//        glGenTextures(1, myTexture);
+//        float myPixels[] = {
+//            0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+//            1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f
+//        };
+        
+
+glBindTexture(GL_TEXTURE_2D, Texture);
+//        glBindTexture(GL_TEXTURE_2D, myTexture[0]);
+//          glTexImage2D (GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_FLOAT, myPixels);
+        
+        // Set our "myTextureSampler" sampler to user Texture Unit 0
 		glUniform1i(TextureID, 0);
 
 		// 1rst attribute buffer : vertices

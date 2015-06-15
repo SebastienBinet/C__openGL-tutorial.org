@@ -11,6 +11,7 @@ using namespace glm;
 
 glm::mat4 ViewMatrix;
 glm::mat4 ProjectionMatrix;
+glm::vec3 lightPos = glm::vec3(4,4,4);
 
 glm::mat4 getViewMatrix(){
 	return ViewMatrix;
@@ -19,6 +20,9 @@ glm::mat4 getProjectionMatrix(){
 	return ProjectionMatrix;
 }
 
+glm::vec3 getLightPos() {
+    return lightPos;
+}
 
 // Initial position : on +Z
 glm::vec3 position = glm::vec3( 0, 0, 5 ); 
@@ -43,8 +47,12 @@ void computeMatricesFromInputs(){
 	double currentTime = glfwGetTime();
 	float deltaTime = float(currentTime - lastTime);
 
+bool useAlsoOriginalControl = false;
+double xpos, ypos;
+    
+if (useAlsoOriginalControl) {
 	// Get mouse position
-	double xpos, ypos;
+	
 	glfwGetCursorPos(window, &xpos, &ypos);
 
 	// Reset mouse position for next frame
@@ -53,6 +61,28 @@ void computeMatricesFromInputs(){
 	// Compute new orientation
 	horizontalAngle += mouseSpeed * float(1024/2 - xpos );
 	verticalAngle   += mouseSpeed * float( 768/2 - ypos );
+	
+}
+    // look up
+    if (glfwGetKey( window, GLFW_KEY_W ) == GLFW_PRESS){
+        verticalAngle += 1 * deltaTime * speed;
+    }
+    // look down
+    if (glfwGetKey( window, GLFW_KEY_S ) == GLFW_PRESS){
+        verticalAngle -= 1 * deltaTime * speed;
+    }
+    // look right
+    if (glfwGetKey( window, GLFW_KEY_D ) == GLFW_PRESS){
+        horizontalAngle += 1 * deltaTime * speed;
+    }
+    // look left
+    if (glfwGetKey( window, GLFW_KEY_A ) == GLFW_PRESS){
+        horizontalAngle -= 1 * deltaTime * speed;
+    }
+   
+    
+    if(((int)xpos != 1024/2) || ((int)ypos != 768/2))
+        printf("pos = %f,%f,  angles = %f,%f\n", xpos, ypos, horizontalAngle, verticalAngle);
 
 	// Direction : Spherical coordinates to Cartesian coordinates conversion
 	glm::vec3 direction(
@@ -88,6 +118,9 @@ void computeMatricesFromInputs(){
 		position -= right * deltaTime * speed;
 	}
 
+    
+    
+    
 	float FoV = initialFoV;// - 5 * glfwGetMouseWheel(); // Now GLFW 3 requires setting up a callback for this. It's a bit too complicated for this beginner's tutorial, so it's disabled instead.
 
 	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
@@ -98,6 +131,35 @@ void computeMatricesFromInputs(){
 								position+direction, // and looks here : at the same position, plus "direction"
 								up                  // Head is up (set to 0,-1,0 to look upside-down)
 						   );
+    
+    
+    
+    // Compute new light position
+    // move light up
+    if (glfwGetKey( window, GLFW_KEY_I ) == GLFW_PRESS){
+        lightPos += up * deltaTime * speed;
+    }
+    // move light  down
+    if (glfwGetKey( window, GLFW_KEY_J ) == GLFW_PRESS){
+        lightPos -= up * deltaTime * speed;
+    }
+    // move light  right
+    if (glfwGetKey( window, GLFW_KEY_M ) == GLFW_PRESS){
+        lightPos += right * deltaTime * speed;
+    }
+    // move light  left
+    if (glfwGetKey( window, GLFW_KEY_N ) == GLFW_PRESS){
+        lightPos -= right * deltaTime * speed;
+    }
+    // move light  forward
+    if (glfwGetKey( window, GLFW_KEY_O) == GLFW_PRESS){
+        lightPos += direction * deltaTime * speed;
+    }
+    // move light  backward
+    if (glfwGetKey( window, GLFW_KEY_K ) == GLFW_PRESS){
+        lightPos -= direction * deltaTime * speed;
+    }
+
 
 	// For the next frame, the "last time" will be "now"
 	lastTime = currentTime;

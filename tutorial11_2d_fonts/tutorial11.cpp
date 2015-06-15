@@ -35,6 +35,7 @@ int main( void )
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	// Open a window and create its OpenGL context
 	window = glfwCreateWindow( 1024, 768, "Tutorial 11 - 2D Fonts", NULL, NULL);
@@ -224,10 +225,12 @@ int main( void )
 
 		char text[256];
 		sprintf(text,"%.2f sec", glfwGetTime() );
+        printText2D ("Salut", 00, 300, 220);
 		printText2D(text, 10, 500, 60);
 
 		// Swap buffers
 		glfwSwapBuffers(window);
+		glfwPollEvents();
 
 	} // Check if the ESC key was pressed or the window was closed
 	while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&

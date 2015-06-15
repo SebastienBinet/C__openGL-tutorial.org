@@ -45,6 +45,7 @@ set(ALL_LIBS
 	${OPENGL_LIBRARY}
 	GLFW_303
 	GLEW_190
+    ANTTWEAKBAR_116_OGLCORE_GLFW
 )
 
 add_definitions(

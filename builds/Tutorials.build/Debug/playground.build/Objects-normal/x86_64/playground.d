@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/seb/GitHub/opengl-tutorial-org-SB-SB-SB/playground/playground.cpp \
+  /Users/seb/GitHub/opengl-tutorial-org/playground/playground.cpp \
   /Users/seb/GitHub/opengl-tutorial-org/external/glew-1.9.0/include/GL/glew.h \
   /Users/seb/GitHub/opengl-tutorial-org/external/glfw-3.0.3/include/GLFW/glfw3.h \
   /Users/seb/GitHub/opengl-tutorial-org/external/glm-0.9.4.0/glm/glm.hpp \
@@ -61,5 +61,4 @@ dependencies: \
   /Users/seb/GitHub/opengl-tutorial-org/external/glm-0.9.4.0/glm/./core/func_integer.hpp \
   /Users/seb/GitHub/opengl-tutorial-org/external/glm-0.9.4.0/glm/core/func_integer.inl \
   /Users/seb/GitHub/opengl-tutorial-org/external/glm-0.9.4.0/glm/./core/func_noise.hpp \
-  /Users/seb/GitHub/opengl-tutorial-org/external/glm-0.9.4.0/glm/core/func_noise.inl \
-  /Users/seb/GitHub/opengl-tutorial-org/common/shader.hpp
+  /Users/seb/GitHub/opengl-tutorial-org/external/glm-0.9.4.0/glm/core/func_noise.inl

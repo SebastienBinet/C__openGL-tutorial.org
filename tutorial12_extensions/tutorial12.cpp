@@ -76,6 +76,7 @@ int main( void )
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	// ARB_debug_output is a bit special, 
 	// it requires creating the OpenGL context
@@ -84,7 +85,7 @@ int main( void )
 	// or other, check the documentation.
 	// If you use custom code, read the spec : 
 	// http://www.opengl.org/registry/specs/ARB/debug_output.txt
-	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, 1); 
+	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, 1);
 
 	// Open a window and create its OpenGL context
 	window = glfwCreateWindow( 1024, 768, "Tutorial 12 - Extensions", NULL, NULL);

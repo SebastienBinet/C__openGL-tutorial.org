@@ -32,11 +32,19 @@ int main( void )
 	}
 
 	glfwWindowHint(GLFW_SAMPLES, 1);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); // So that glBegin/glVertex/glEnd work
-
+   
+    bool debugByShowingNormals = true;
+    if (debugByShowingNormals) {
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    }
+    else {
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        //	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); // So that glBegin/glVertex/glEnd work
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    }
 	// Open a window and create its OpenGL context
 	window = glfwCreateWindow( 1024, 768, "Tutorial 13 - Normal Mapping", NULL, NULL);
 	if( window == NULL ){
@@ -151,10 +159,13 @@ int main( void )
 	// Get a handle for our "LightPosition" uniform
 	glUseProgram(programID);
 	GLuint LightID = glGetUniformLocation(programID, "LightPosition_worldspace");
+    GLuint debugModeID = glGetUniformLocation(programID, "DebugMode");
 
 	// For speed computation
 	double lastTime = glfwGetTime();
 	int nbFrames = 0;
+    int debugCounter=0;
+    bool debugModeFlag = false;
 
 	do{
 
@@ -192,8 +203,18 @@ int main( void )
 		glUniformMatrix3fv(ModelView3x3MatrixID, 1, GL_FALSE, &ModelView3x3Matrix[0][0]);
 		
 
-		glm::vec3 lightPos = glm::vec3(0,0,4);
+		glm::vec3 lightPos = getLightPos(); //glm::vec3(0,0,4);
 		glUniform3f(LightID, lightPos.x, lightPos.y, lightPos.z);
+        
+        if(debugCounter++ >= 10) {
+            debugModeFlag = false;
+            debugCounter = 0;
+        } else {
+            debugModeFlag = true;
+        }
+        
+        
+        glUniform1i(debugModeID, debugModeFlag);
 
 		// Bind our diffuse texture in Texture Unit 0
 		glActiveTexture(GL_TEXTURE0);

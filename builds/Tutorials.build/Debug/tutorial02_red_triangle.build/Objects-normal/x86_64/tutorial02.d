@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/seb/GitHub/opengl-tutorial-org-SB-SB-SB/tutorial02_red_triangle/tutorial02.cpp \
+  /Users/seb/GitHub/opengl-tutorial-org/tutorial02_red_triangle/tutorial02.cpp \
   /Users/seb/GitHub/opengl-tutorial-org/external/glew-1.9.0/include/GL/glew.h \
   /Users/seb/GitHub/opengl-tutorial-org/external/glfw-3.0.3/include/GLFW/glfw3.h \
   /Users/seb/GitHub/opengl-tutorial-org/external/glm-0.9.4.0/glm/glm.hpp \
