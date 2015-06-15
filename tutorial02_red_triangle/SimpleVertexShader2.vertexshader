@@ -1,0 +1,12 @@
+#version 330 core
+
+// Input vertex data, different for all executions of this shader.
+layout(location = 11) in vec3 vertexPosition_modelspace2;
+
+void main(){
+
+    gl_Position.xyz = vertexPosition_modelspace2;
+    gl_Position.w = 1.1;
+
+}
+
