@@ -57,7 +57,7 @@ int main( void )
 	glfwSetCursorPos(window, 1024, 768);
 
 	// Dark blue background
-	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+	glClearColor(1.0f/255,1.0f/255,1.0f/255,1.0f/255);
 
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
@@ -286,13 +286,44 @@ int main( void )
 			(void*)0           // element array buffer offset
 		);
 
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glDisableVertexAttribArray(2);
 
+//////////
+        ///////////////////////////////////////////////////////////
+		//glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+        //glReadBuffer(GL_COLOR_ATTACHMENT4);
+        //glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, renderedTexture);
+        int err;
+        //err = glGetError(); if (err) fprintf(stderr,"1000 glGetError():0x%04x",err);
+        char myBuf[4*1024*768];
+        //glPixelStorei(GL_UNPACK_ALIGNMENT,4);
+        //err = glGetError(); if (err) fprintf(stderr,"1001 glGetError():0x%04x",err);
+        //fprintf(stdout,"\n[0]=%d, %d, %d, %d\n",(int)myBuf[0],(int)myBuf[1],(int)myBuf[2], (int)myBuf[3]);
+        
+        
+        
+        
+        
+        glGetTexImage(GL_TEXTURE_2D, 0, GL_RGB, GL_UNSIGNED_BYTE, myBuf);
+        err = glGetError(); if (err) fprintf(stderr,"1002 glGetError():0x%04x",err);
+        
+        
+        
+        //glReadPixels(0, 0, (GLsizei)1, (GLsizei)1, GL_RGB,GL_UNSIGNED_BYTE, (GLvoid*)myBuf);
+        //err = glGetError(); if (err) fprintf(stderr,"1003 glGetError():0x%04x",err);
 
+        fprintf(stdout,"\n");
+        for(int iii=0;iii<24;iii++){fprintf(stdout," %d,",(unsigned char)myBuf[1024*12+iii]);}
+        fprintf(stdout,"\n");
+        
+        //fprintf(stdout,"\n[0]=%d, %d, %d, %d\n",(unsigned char)myBuf[1024*3*10+0],(unsigned char)myBuf[768*3*10+1],(unsigned char)myBuf[768*3*10+2],(unsigned char)myBuf[768*3*10+3]);
 
-		// Render to the screen
+        glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
+        glDisableVertexAttribArray(2);
+
+        
+        // Render to the screen
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glViewport(0,0,1024*2,768*2); // Render on the whole framebuffer, complete from the lower left corner to the upper right
 

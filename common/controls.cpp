@@ -81,8 +81,8 @@ if (useAlsoOriginalControl) {
     }
    
     
-    if(((int)xpos != 1024/2) || ((int)ypos != 768/2))
-        printf("pos = %f,%f,  angles = %f,%f\n", xpos, ypos, horizontalAngle, verticalAngle);
+    //if(((int)xpos != 1024/2) || ((int)ypos != 768/2))
+        //printf("pos = %f,%f,  angles = %f,%f\n", xpos, ypos, horizontalAngle, verticalAngle);
 
 	// Direction : Spherical coordinates to Cartesian coordinates conversion
 	glm::vec3 direction(
